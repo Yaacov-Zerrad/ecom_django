@@ -11,12 +11,13 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+# for utilis force_text in email send
 from .info import *
 import django 
 from django.utils.encoding import force_str
 django.utils.encoding.force_text = force_str
 
-
+# for emil send
 EMAIL_USE_TLS = EMAIL_USE_TLS
 EMAIL_HOST = EMAIL_HOST
 EMAIL_HOST_USER = EMAIL_HOST_USER

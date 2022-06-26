@@ -1,4 +1,3 @@
-from webbrowser import get
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -24,18 +23,27 @@ def register(request):
         lastname = request.POST['lastname']
         email = request.POST['email']
         password = request.POST['password']
-        password2 = request.POST['password2']
+        passwordconfirm = request.POST['password2']
         # verification
         if User.objects.filter(username=username): # .first()
             messages.error(request, 'this name already exists')
             redirect('register')
-        if User.objects.filter(email=email):
-            messages.error(request, 'this email already exists')
-            redirect('register')
+        if len(username)>10:
+            messages.error(request, 'Please the username must not be more than 10 character.')
+            return redirect('register')
+        if len(username)<5:
+            messages.error(request, 'Please the username must be at leat 5 characters.')
+            return redirect('register')
         if not username.isalnum():
             messages.errot(request, 'the name must be alphanumeric')
             redirect('register')
-        if password2 != password:
+        if User.objects.filter(email=email):
+            messages.error(request, 'this email already exists')
+            redirect('register')
+        if len(password)<5:
+            messages.error(request, 'Please the username must be at leat 5 characters.')
+            return redirect('register')
+        if passwordconfirm != password:
             messages.error(request, 'the 2 passwords do not match')
             redirect('register')
         
@@ -80,6 +88,7 @@ def login_user(request):
         password = request.POST['password']
         user = authenticate(username=username , password=password)
         my_user = User.objects.get(username=username)
+        
         if user is not None:
             login(request, user)
             firstname = user.first_name
