@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<center>
+    <h3> Login </h3>
+    
+<h3>{% for message in messages %}
+{{ message }}
+{% endfor %}</h3>
+
+
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="username">username</label>
+        <input type="username" name="username" id="username" placeholder="Enter your username" class="form-label" required>
+        <br>
+        <label for="password">password</label>
+        <input type="password" name="password" id="password" placeholder="Enter your password" class="form-label" required>
+        <br>
+        <button type="submit" class="btn btn-primary"> Login </button>
+        <br>
+        <br>
+
+    <p>forget password ? <a href="/reset_password">reset</a></p>
+  
+    </form>
+  </center>
+  
+
+
+
+
+{% endblock content %}

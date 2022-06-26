@@ -35,7 +35,7 @@ class Student(User):
         if not self.pk:
             self.type = User.Type.STUDENT
         return super().save(*args, **kwargs)
-        
+         
         
 class Teacher(User):
     objects = TeacherManager()
