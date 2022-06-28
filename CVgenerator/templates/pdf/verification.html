@@ -1,0 +1,36 @@
+{% extends 'pdf/base.html' %}
+
+
+
+{% block content %}
+<h1>check your form</h1>
+
+<h4 class="title"> CONTACT </h4>
+<p>{{ profile.name }}  <br/> {{ profile.phone }} <br/> {{ profile.address }}<br/> {{ profile.email }}</p>
+
+<h4 class="title"> SKILL </h4>
+<p>{{ profile.skill }} </p>
+
+<h4 class="title"> LANGUE </h4>
+<p>{{ profile.langue }} </p>
+
+<h4 class="title"> INTEREST </h4>
+<p>{{ profile.interest }} </p>
+
+<h4 class="title"> EXPERIENCE </h4>
+<p>{{ profile.experience }} </p>
+
+<h4 class="title"> EDUCATION </h4>
+<p>{{ profile.education }} </p>
+
+<h4 class="title"> PROJECTS </h4>
+<p>{{ profile.project }} </p>
+
+<h4 class="title"> CVgenerator </h4>
+<p> generate at {% now  "d-m-Y" %}    </p>
+
+
+<a href="/{{ id }}/generate" class="btn btn-primary text-white" > download </a>
+<br>
+
+{% endblock content %}

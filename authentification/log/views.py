@@ -27,7 +27,7 @@ def register(request):
         # verification
         if User.objects.filter(username=username): # .first()
             messages.error(request, 'this name already exists')
-            redirect('register')
+            return redirect('register')
         if len(username)>10:
             messages.error(request, 'Please the username must not be more than 10 character.')
             return redirect('register')
@@ -36,16 +36,16 @@ def register(request):
             return redirect('register')
         if not username.isalnum():
             messages.errot(request, 'the name must be alphanumeric')
-            redirect('register')
+            return redirect('register')
         if User.objects.filter(email=email):
             messages.error(request, 'this email already exists')
-            redirect('register')
+            return redirect('register')
         if len(password)<5:
             messages.error(request, 'Please the username must be at leat 5 characters.')
             return redirect('register')
         if passwordconfirm != password:
             messages.error(request, 'the 2 passwords do not match')
-            redirect('register')
+            return redirect('register')
         
         my_user = User.objects.create_user(username, email, password)
         my_user.first_name =firstname
